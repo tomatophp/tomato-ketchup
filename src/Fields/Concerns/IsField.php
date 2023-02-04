@@ -2,8 +2,12 @@
 
 namespace Tomatophp\TomatoKetchup\Fields\Concerns;
 
+use Spatie\Macroable\Macroable;
+
 trait IsField
 {
+    use Macroable;
+
     public string $name;
 
     public function name(string $name): static
@@ -49,6 +53,14 @@ trait IsField
     public function style(string|array $style): static
     {
         $this->style = $style;
+        return $this;
+    }
+
+    public string|array|object $default;
+
+    public function default(string|array|object $default): static
+    {
+        $this->default = $default;
         return $this;
     }
 }

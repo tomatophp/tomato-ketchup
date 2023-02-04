@@ -1,0 +1,2 @@
+<x-splade-input  :name="$field->name" :type="$field->type"   :placeholder="$field->label ?: ucfirst(str_replace('_',' ',$field->name))" label="{{$field->label ?: ucfirst(str_replace('_',' ',$field->name))}}" required="{{$field->required}}"/>
+<x-splade-input  name="{{$field->name.'_confirmation'}}" :type="$field->type"   placeholder="{{$field->label ?: ucfirst(str_replace('_',' ',$field->name)) . ' Confirmation'}}" label="{{$field->label ?: ucfirst(str_replace('_',' ',$field->name)) . ' Confirmation'}}" required="{{$field->required}}"/>

@@ -3,7 +3,7 @@
         {{ $translations['index'] }}
     </x-slot>
     <x-slot name="headerBody">
-        <Link slideover href="{{route('admin.' .$slug. '.create')}}" class="filament-button inline-flex items-center justify-center py-1 gap-1 font-medium rounded-lg border transition-colors focus:outline-none focus:ring-offset-2 focus:ring-2 focus:ring-inset dark:focus:ring-offset-0 min-h-[2.25rem] px-4 text-sm text-white shadow focus:ring-white border-transparent bg-primary-600 hover:bg-primary-500 focus:bg-primary-700 focus:ring-offset-primary-700 filament-page-button-action">
+        <Link modal href="{{route('admin.' .$slug. '.create')}}" class="filament-button inline-flex items-center justify-center py-1 gap-1 font-medium rounded-lg border transition-colors focus:outline-none focus:ring-offset-2 focus:ring-2 focus:ring-inset dark:focus:ring-offset-0 min-h-[2.25rem] px-4 text-sm text-white shadow focus:ring-white border-transparent bg-primary-600 hover:bg-primary-500 focus:bg-primary-700 focus:ring-offset-primary-700 filament-page-button-action">
             {{trans('tomato-admin::global.crud.create-new')}} {{ $translations['single'] }}
         </Link>
     </x-slot>
@@ -15,13 +15,13 @@
             <x-splade-table :for="$table" use="$slug" striped>
                 <x-splade-cell actions use="$slug">
                     <div class="flex justify-start">
-                        <Link href="{{route('admin.' .$slug. '.show', $item->id)}}" class="px-2 text-blue-500" slideover>
+                        <Link href="{{route('admin.' .$slug. '.show', $item->id)}}" class="px-2 text-blue-500" modal>
                             <div class="flex justify-start space-x-2">
                                 <x-heroicon-o-eye class="h-4 w-4"/>
                                 <span>{{trans('tomato-admin::global.crud.view')}}</span>
                             </div>
                         </Link>
-                        <Link href="{{route('admin.' .$slug. '.edit', $item->id)}}" class="px-2 text-yellow-400" slideover>
+                        <Link href="{{route('admin.' .$slug. '.edit', $item->id)}}" class="px-2 text-yellow-400" modal>
                             <div class="flex justify-start space-x-2">
                                 <x-heroicon-o-pencil class="h-4 w-4"/>
                                 <span>{{trans('tomato-admin::global.crud.edit')}}</span>

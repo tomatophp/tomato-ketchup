@@ -7,7 +7,7 @@ use Tomatophp\TomatoKetchup\Fields\Concerns\HasValidation;
 use Tomatophp\TomatoKetchup\Fields\Concerns\IsField;
 use Tomatophp\TomatoKetchup\Fields\Concerns\IsReactive;
 
-class Text
+class Trans
 {
     use IsField;
     use IsReactive;
@@ -17,6 +17,6 @@ class Text
 
     public static function make(string $name): static
     {
-        return (new self)->name($name);
+        return (new self)->name($name)->type('trans');
     }
 }
