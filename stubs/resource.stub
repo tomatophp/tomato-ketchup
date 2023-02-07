@@ -1,0 +1,57 @@
+<?php
+
+namespace {{ namespace }};
+
+use {{ model_namespace }}\{{ model }};
+use {{ namespace }}\{{ name }}\Pages\Create;
+use {{ namespace }}\{{ name }}\Pages\Edit;
+use {{ namespace }}\{{ name }}\Pages\Show;
+use TomatoPHP\TomatoKetchup\Fields;
+use TomatoPHP\TomatoKetchup\Services\Resource;
+
+class {{ name }} extends Resource {
+
+    /**
+     * @var string
+     */
+    public string $model = {{ model }}::class;
+
+
+    /**
+     * @return array
+     */
+    public function fields(): array
+    {
+        return [
+            {{ fields }}
+        ];
+    }
+
+    /**
+     * @return string[]
+     */
+    public function pages(): array
+    {
+        return [
+            "create" => Create::class,
+            "edit" => Edit::class,
+            "show" => Show::class,
+        ];
+    }
+
+    /**
+     * @return array
+     */
+    public function translations():array
+    {
+        return [
+            "index" => __('{{ model }}'),
+            "single" => __('{{ model }}'),
+            "messages" => [
+                "store" => __('Your {{ model }} Created Successfully'),
+                "update" => __('Your {{ model }} Updated Successfully'),
+                "destroy" => __('Your {{ model }} Deleted Successfully'),
+            ]
+        ];
+    }
+}

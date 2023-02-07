@@ -1,6 +1,6 @@
 <?php
 
-namespace Tomatophp\TomatoKetchup\Resource\Hooks\Import;
+namespace TomatoPHP\TomatoKetchup\Resource\Hooks\Import;
 
 use Illuminate\Http\Request;
 

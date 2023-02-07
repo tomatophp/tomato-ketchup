@@ -1,9 +1,8 @@
 <?php
 
-namespace Tomatophp\TomatoKetchup\Services;
+namespace TomatoPHP\TomatoKetchup\Services;
 
-
-use Tomatophp\TomatoKetchup\Facades\Tomato;
+use TomatoPHP\TomatoKetchup\Facades\Tomato;
 use TomatoPHP\TomatoPHP\Services\Menu\Menu as MenuService;
 use TomatoPHP\TomatoPHP\Services\Menu\TomatoMenu;
 

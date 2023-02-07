@@ -1,6 +1,6 @@
 <?php
 
-namespace Tomatophp\TomatoKetchup\Resource\Hooks\Update;
+namespace TomatoPHP\TomatoKetchup\Resource\Hooks\Update;
 
 use Illuminate\Http\Request;
 

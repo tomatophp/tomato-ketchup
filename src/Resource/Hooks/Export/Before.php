@@ -1,6 +1,6 @@
 <?php
 
-namespace Tomatophp\TomatoKetchup\Resource\Hooks\Export;
+namespace TomatoPHP\TomatoKetchup\Resource\Hooks\Export;
 
 use Illuminate\Http\Request;
 

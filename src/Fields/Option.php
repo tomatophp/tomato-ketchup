@@ -3,11 +3,7 @@
 namespace Tomatophp\TomatoKetchup\Fields;
 
 use Spatie\Macroable\Macroable;
-use Tomatophp\TomatoKetchup\Fields\Concerns\HasCan;
-use Tomatophp\TomatoKetchup\Fields\Concerns\HasValidation;
-use Tomatophp\TomatoKetchup\Fields\Concerns\IsField;
-use Tomatophp\TomatoKetchup\Fields\Concerns\IsReactive;
-
+use TomatoPHP\TomatoKetchup\Fields\Concerns\HasCan;
 class Option
 {
     use Macroable;

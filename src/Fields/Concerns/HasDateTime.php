@@ -1,6 +1,6 @@
 <?php
 
-namespace Tomatophp\TomatoKetchup\Fields\Concerns;
+namespace TomatoPHP\TomatoKetchup\Fields\Concerns;
 
 trait HasDateTime
 {

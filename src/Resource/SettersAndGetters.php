@@ -1,6 +1,6 @@
 <?php
 
-namespace Tomatophp\TomatoKetchup\Resource;
+namespace TomatoPHP\TomatoKetchup\Resource;
 
 use Illuminate\Support\Str;
 

@@ -1,6 +1,6 @@
 <?php
 
-namespace Tomatophp\TomatoKetchup\Resource\Pages;
+namespace TomatoPHP\TomatoKetchup\Resource\Pages;
 
 use Illuminate\Contracts\Foundation\Application;
 use Illuminate\Contracts\View\Factory;
@@ -8,8 +8,8 @@ use Illuminate\Contracts\View\View;
 use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Request;
 use ProtoneMedia\Splade\Facades\Toast;
-use Tomatophp\TomatoKetchup\Resource\Actions;
-use Tomatophp\TomatoKetchup\Resource\Hooks;
+use TomatoPHP\TomatoKetchup\Resource\Actions;
+use TomatoPHP\TomatoKetchup\Resource\Hooks;
 
 /**
  * @property string $type

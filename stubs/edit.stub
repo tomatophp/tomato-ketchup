@@ -1,0 +1,12 @@
+<?php
+
+namespace {{ namespace }}\{{ resource }}\Pages;
+
+use {{ namespace }}\{{ resource }};
+use TomatoPHP\TomatoKetchup\Resource\Pages\EditPage;
+
+class Edit extends EditPage
+{
+    public string $type = 'page';
+    public string $resource = {{ resource }}::class;
+}

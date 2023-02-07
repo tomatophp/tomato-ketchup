@@ -1,0 +1,12 @@
+<?php
+
+namespace {{ namespace }}\{{ resource }}\Pages;
+
+use {{ namespace }}\{{ resource }};
+use TomatoPHP\TomatoKetchup\Resource\Pages\ShowPage;
+
+class Show extends ShowPage
+{
+    public string $type = 'modal';
+    public string $resource = {{ resource }}::class;
+}

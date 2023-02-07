@@ -1,6 +1,6 @@
 <?php
 
-namespace Tomatophp\TomatoKetchup\Resource;
+namespace TomatoPHP\TomatoKetchup\Resource;
 
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Foundation\Http\FormRequest;
@@ -10,8 +10,8 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Str;
 use Illuminate\View\View;
 use ProtoneMedia\Splade\Facades\Toast;
-use Tomatophp\TomatoKetchup\Services\Table;
-use Tomatophp\TomatoKetchup\Resource\Hooks;
+use TomatoPHP\TomatoKetchup\Services\Table;
+use TomatoPHP\TomatoKetchup\Resource\Hooks;
 
 trait Methods
 {

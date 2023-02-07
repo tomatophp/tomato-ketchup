@@ -1,6 +1,6 @@
 <?php
 
-namespace Tomatophp\TomatoKetchup\Services;
+namespace TomatoPHP\TomatoKetchup\Services;
 
 use Illuminate\Http\Request;
 use Illuminate\Support\Collection;

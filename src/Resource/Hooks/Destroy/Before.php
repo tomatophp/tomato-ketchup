@@ -1,6 +1,6 @@
 <?php
 
-namespace Tomatophp\TomatoKetchup\Resource\Hooks\Destroy;
+namespace TomatoPHP\TomatoKetchup\Resource\Hooks\Destroy;
 
 use Illuminate\Http\Request;
 

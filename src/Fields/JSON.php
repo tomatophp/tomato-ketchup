@@ -2,11 +2,10 @@
 
 namespace Tomatophp\TomatoKetchup\Fields;
 
-use Spatie\Macroable\Macroable;
-use Tomatophp\TomatoKetchup\Fields\Concerns\HasOptions;
-use Tomatophp\TomatoKetchup\Fields\Concerns\HasValidation;
-use Tomatophp\TomatoKetchup\Fields\Concerns\IsField;
-use Tomatophp\TomatoKetchup\Fields\Concerns\IsReactive;
+use TomatoPHP\TomatoKetchup\Fields\Concerns\HasOptions;
+use TomatoPHP\TomatoKetchup\Fields\Concerns\HasValidation;
+use TomatoPHP\TomatoKetchup\Fields\Concerns\IsField;
+use TomatoPHP\TomatoKetchup\Fields\Concerns\IsReactive;
 
 class JSON
 {

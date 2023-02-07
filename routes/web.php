@@ -1,7 +1,7 @@
 <?php
 
 
-use Tomatophp\TomatoKetchup\Facades\Tomato;
+use TomatoPHP\TomatoKetchup\Facades\Tomato;
 
 \Illuminate\Support\Facades\Route::get('test', function (){
 

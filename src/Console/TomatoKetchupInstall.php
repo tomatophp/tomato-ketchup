@@ -1,6 +1,6 @@
 <?php
 
-namespace Tomatophp\TomatoKetchup\Console;
+namespace TomatoPHP\TomatoKetchup\Console;
 
 use Illuminate\Console\Command;
 use TomatoPHP\ConsoleHelpers\Traits\RunCommand;
@@ -42,6 +42,6 @@ class TomatoKetchupInstall extends Command
         $this->yarnCommand(['build']);
         $this->artisanCommand(["migrate"]);
         $this->artisanCommand(["optimize:clear"]);
-        $this->info('tomatoKetchup installed successfully.');
+        $this->info('🍅 Tomato Ketchup installed successfully.');
     }
 }

@@ -5,12 +5,14 @@
     "keywords": [
         "php",
         "laravel",
-        "template"
+        "resource",
+        "CRUD",
+        "Nova"
     ],
     "license": "MIT",
     "autoload": {
         "psr-4": {
-            "Tomatophp\\TomatoKetchup\\": "src/"
+            "TomatoPHP\\TomatoKetchup\\": "src/"
         }
     },
     "autoload-dev": {
@@ -21,7 +23,7 @@
     "extra": {
         "laravel": {
             "providers": [
-                "Tomatophp\\TomatoKetchup\\TomatoKetchupServiceProvider"
+                "TomatoPHP\\TomatoKetchup\\TomatoKetchupServiceProvider"
             ]
         }
     },
@@ -33,6 +35,8 @@
     ],
     "require": {
         "php": "^8.0.2",
-        "queents/console-helpers": "^1.0"
+        "tomatophp/console-helpers": "^1.0",
+        "tomatophp/tomato-components": "^1.0",
+        "tomatophp/tomato-admin": "^1.0"
     }
 }

@@ -1,14 +1,14 @@
 <?php
 
-namespace Tomatophp\TomatoKetchup\Services;
+namespace TomatoPHP\TomatoKetchup\Services;
 
 use Illuminate\Support\Str;
-use Tomatophp\TomatoKetchup\Resource\Actions;
-use Tomatophp\TomatoKetchup\Resource\Helpers;
-use Tomatophp\TomatoKetchup\Resource\Methods;
-use Tomatophp\TomatoKetchup\Resource\ResourceInterface;
-use Tomatophp\TomatoKetchup\Resource\Routes;
-use Tomatophp\TomatoKetchup\Resource\SettersAndGetters;
+use TomatoPHP\TomatoKetchup\Resource\Actions;
+use TomatoPHP\TomatoKetchup\Resource\Helpers;
+use TomatoPHP\TomatoKetchup\Resource\Methods;
+use TomatoPHP\TomatoKetchup\Resource\ResourceInterface;
+use TomatoPHP\TomatoKetchup\Resource\Routes;
+use TomatoPHP\TomatoKetchup\Resource\SettersAndGetters;
 
 /**
  *

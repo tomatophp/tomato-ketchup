@@ -1,11 +1,12 @@
 <?php
 
-namespace Tomatophp\TomatoKetchup;
+namespace TomatoPHP\TomatoKetchup;
 
 use Illuminate\Support\ServiceProvider;
-use Tomatophp\TomatoKetchup\Facades\Tomato;
-use Tomatophp\TomatoKetchup\Services\Menu;
-use Tomatophp\TomatoKetchup\Services\TomatoCore;
+use TomatoPHP\TomatoKetchup\Console\TomatoKetchupGenerate;
+use TomatoPHP\TomatoKetchup\Facades\Tomato;
+use TomatoPHP\TomatoKetchup\Services\Menu;
+use TomatoPHP\TomatoKetchup\Services\TomatoCore;
 use TomatoPHP\TomatoPHP\Services\Menu\TomatoMenuRegister;
 
 
@@ -19,7 +20,8 @@ class TomatoKetchupServiceProvider extends ServiceProvider
 
         //Register generate command
         $this->commands([
-           \Tomatophp\TomatoKetchup\Console\TomatoKetchupInstall::class,
+           \TomatoPHP\TomatoKetchup\Console\TomatoKetchupInstall::class,
+            TomatoKetchupGenerate::class
         ]);
 
         //Register Config file

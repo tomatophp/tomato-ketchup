@@ -1,6 +1,6 @@
 <?php
 
-namespace Tomatophp\TomatoKetchup\Resource\Hooks\Index;
+namespace TomatoPHP\TomatoKetchup\Resource\Hooks\Index;
 
 use Illuminate\Http\Request;
 

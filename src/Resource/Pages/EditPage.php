@@ -1,12 +1,12 @@
 <?php
 
-namespace Tomatophp\TomatoKetchup\Resource\Pages;
+namespace TomatoPHP\TomatoKetchup\Resource\Pages;
 
 use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Request;
 use Illuminate\View\View;
 use ProtoneMedia\Splade\Facades\Toast;
-use Tomatophp\TomatoKetchup\Resource\Hooks;
+use TomatoPHP\TomatoKetchup\Resource\Hooks;
 
 
 /**

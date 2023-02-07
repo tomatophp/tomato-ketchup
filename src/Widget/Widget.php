@@ -1,6 +1,6 @@
 <?php
 
-namespace Tomatophp\TomatoKetchup\Widget;
+namespace TomatoPHP\TomatoKetchup\Widget;
 
 class Widget
 {

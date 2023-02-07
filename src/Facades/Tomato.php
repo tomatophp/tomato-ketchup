@@ -1,6 +1,6 @@
 <?php
 
-namespace Tomatophp\TomatoKetchup\Facades;
+namespace TomatoPHP\TomatoKetchup\Facades;
 
 use Illuminate\Support\Facades\Facade;
 
