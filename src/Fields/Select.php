@@ -6,12 +6,14 @@ use Spatie\Macroable\Macroable;
 use Tomatophp\TomatoKetchup\Fields\Concerns\HasOptions;
 use Tomatophp\TomatoKetchup\Fields\Concerns\HasValidation;
 use Tomatophp\TomatoKetchup\Fields\Concerns\IsField;
+use Tomatophp\TomatoKetchup\Fields\Concerns\IsMulti;
 use Tomatophp\TomatoKetchup\Fields\Concerns\IsReactive;
 
 class Select
 {
     use IsField;
     use IsReactive;
+    use IsMulti;
     use HasValidation;
     use HasOptions;
 

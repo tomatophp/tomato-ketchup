@@ -8,7 +8,7 @@
 @elseif($field->component === 'x-splade-select')
     @include('tomato-ketchup::components.fields.select', ['field'=> $field])
 @elseif($field->type === 'password')
-    @include('tomato-ketchup::components.fields.password', ['field'=> $field])
+    @include('tomato-ketchup::components.fields.password', ['field'=> $field, 'edit'=>$edit])
 @elseif(
     $field->component === 'x-tomato-tel'
 )
@@ -36,8 +36,14 @@ $field->component === 'x-splade-textarea'
 @elseif(
 $field->component === 'x-tomato-repeater'
 )
-
-
+@elseif(
+$field->component === 'x-tomato-color'
+)
+    @include('tomato-ketchup::components.fields.color', ['field'=> $field])
+@elseif(
+$field->component === 'x-splade-file'
+)
+    @include('tomato-ketchup::components.fields.file', ['field'=> $field])
 @elseif(
     $field->type === 'text' ||
     $field->type === 'number' ||

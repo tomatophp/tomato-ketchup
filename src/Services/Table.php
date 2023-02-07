@@ -3,10 +3,16 @@
 namespace Tomatophp\TomatoKetchup\Services;
 
 use Illuminate\Http\Request;
+use Illuminate\Support\Collection;
+use Illuminate\Support\Str;
 use ProtoneMedia\Splade\AbstractTable;
 use ProtoneMedia\Splade\Facades\Toast;
 use ProtoneMedia\Splade\SpladeTable;
+use ProtoneMedia\Splade\Table\LaravelExcelException;
 
+/**
+ *
+ */
 class Table extends AbstractTable
 {
     /**
@@ -16,43 +22,49 @@ class Table extends AbstractTable
      */
     public function __construct(
         protected string $model,
-        protected array $fields
+        protected Collection $fields,
+        public SpladeTable|null $data=null,
+        protected $deletable = true,
     )
     {
         //
     }
 
+
     /**
-     * Determine if the user is authorized to perform bulk actions and exports.
-     *
+     * @param Request $request
      * @return bool
      */
-    public function authorize(Request $request)
+    public function authorize(Request $request): bool
     {
         return true;
     }
 
+
     /**
-     * The resource or query builder.
-     *
-     * @return mixed
+     * @return array|mixed
      */
-    public function for()
+    public function for(): mixed
     {
         return $this->model::query();
     }
 
+
     /**
-     * Configure the given SpladeTable.
-     *
-     * @param \ProtoneMedia\Splade\SpladeTable $table
+     * @param SpladeTable $table
      * @return void
+     * @throws LaravelExcelException
      */
-    public function configure(SpladeTable $table)
+    public function configure(SpladeTable $table): void
     {
         $table
-            ->withGlobalSearch(label: trans('tomato-admin::global.search'),columns: ['id','name',])
-            ->bulkAction(
+            ->withGlobalSearch(label: trans('tomato-admin::global.search'), columns: ['id','name',])
+            ->export()
+            ->defaultSort('id')
+            ->paginate(15);
+
+        if($this->deletable){
+            $table->bulkAction(
                 label: trans('tomato-admin::global.crud.delete'),
                 each: function ($model) {
                     $model = $this->model::find($model);
@@ -60,14 +72,15 @@ class Table extends AbstractTable
                 },
                 after: fn () => Toast::danger(__('Permission Has Been Deleted'))->autoDismiss(2),
                 confirm: true
-            )
-            ->export()
-            ->defaultSort('id')
-            ->column(key: 'actions',label: trans('tomato-admin::global.crud.actions'))
-            ->paginate(15);
+            );
+        }
 
         foreach($this->fields as $field){
-            $table->column(key: $field->name,label: $field->label?:$field->name);
+            $table->column(key: $field->name,label: $field->label?:Str::title(Str::replace('_',' ', $field->name)));
         }
+
+        $table->column(key: 'actions',label: trans('tomato-admin::global.crud.actions'));
+
+        $this->data= $table;
     }
 }

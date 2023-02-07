@@ -4,7 +4,7 @@ namespace Tomatophp\TomatoKetchup\Fields\Concerns;
 
 trait HasValidation
 {
-    public bool $required=true;
+    public bool $required=false;
 
     public function required(bool $required=true): static
     {

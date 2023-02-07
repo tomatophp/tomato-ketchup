@@ -2,13 +2,38 @@
 
 namespace Tomatophp\TomatoKetchup\Resource;
 
+/**
+ *
+ */
 interface ResourceInterface
 {
-    public function fields();
-    public function table();
-    public function form();
-    public function pages();
-    public function actions();
-    public function filters();
-    public function relations();
+    /**
+     * @return array
+     */
+    public function fields(): array;
+
+    /**
+     * @return array
+     */
+    public function pages(): array;
+
+    /**
+     * @return array
+     */
+    public function actions(): array;
+
+    /**
+     * @return array
+     */
+    public function widgets(): array;
+
+    /**
+     * @return array
+     */
+    public function filters(): array;
+
+    /**
+     * @return array
+     */
+    public function relations(): array;
 }

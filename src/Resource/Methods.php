@@ -11,9 +11,29 @@ use Illuminate\Support\Str;
 use Illuminate\View\View;
 use ProtoneMedia\Splade\Facades\Toast;
 use Tomatophp\TomatoKetchup\Services\Table;
+use Tomatophp\TomatoKetchup\Resource\Hooks;
 
 trait Methods
 {
+    /*
+     * Load Hooks
+     */
+    use Hooks\Index\Before;
+    use Hooks\Index\BeforeQuery;
+    use Hooks\Index\BeforeQueryAPI;
+    use Hooks\Index\AfterQuery;
+    use Hooks\Index\AfterQueryAPI;
+    use Hooks\Index\BeforeAPI;
+    use Hooks\Index\After;
+    use Hooks\Index\AfterAPI;
+    use Hooks\Destroy\After;
+    use Hooks\Destroy\Before;
+    use Hooks\Bulk\Before;
+    use Hooks\Bulk\After;
+    use Hooks\Export\Before;
+    use Hooks\Export\After;
+    use Hooks\Import\Before;
+    use Hooks\Import\After;
 
     /**
      * @param Request $request
@@ -21,11 +41,18 @@ trait Methods
      */
     public function index(Request $request): View
     {
-        return view('tomato-ketchup::resource.index', [
-            "table" => new Table($this->model, $this->fields()),
+        $request = $this->beforeIndex($request);
+
+        return view($this->views.'.index', [
+            "table" => new Table($this->model, collect($this->fields())->where('list', true), null, $this->deletable),
+            "fields" => collect($this->fields())->where('list', true),
             "model" => $this->model,
             "translations" => $this->translations(),
             "slug" => $this->slug,
+            "create" => isset($this->pages()['create']) ? app($this->pages()['create'])->type : false,
+            "edit" => isset($this->pages()['edit']) ? app($this->pages()['edit'])->type : false,
+            "show" => isset( $this->pages()['show']) ? app($this->pages()['show'])->type :  false,
+            "delete" => $this->deletable,
         ]);
     }
 
@@ -35,6 +62,8 @@ trait Methods
      */
     public function json(Request $request): JsonResponse
     {
+        $request = $this->beforeIndex($request);
+
         return response()->json([
             'model' => $this->model::all()->toArray(),
         ]);
@@ -42,155 +71,91 @@ trait Methods
 
 
     /**
-     * @return View
+     * @return RedirectResponse | View
      */
-    public function create(): View
+    public function create(): RedirectResponse | View
     {
-        return view('tomato-ketchup::resource.create', [
-            "model" => $this->model,
-            "fields" => $this->fields(),
-            "translations" => $this->translations(),
-            "slug" => $this->slug,
-        ]);
-    }
-
-
-    public function store(Request $request)
-    {
-        $rules = [];
-        $media = [];
-        foreach ($this->fields() as $field) {
-            if($field->type === 'media'){
-                $media[] = [
-                    "collection" => $field->name,
-                    "multi" => $field->multi,
-                ];
-            }
-            $rules[$field->name] = $field->rules;
-        }
-        $request->validate($rules);
-
-        $record = $this->model::create($request->all());
-
-        if(count($media)){
-            foreach ($media as $mediaCollection){
-                if($mediaCollection['multi']){
-                    foreach ($request->{$mediaCollection['collection']} as $item) {
-                        $record->addMedia($item)
-                            ->preservingOriginal()
-                            ->toMediaCollection($mediaCollection['collection']);
-                    }
-                }
-                else {
-                    $record->addMedia($request->{$mediaCollection['collection']})
-                        ->preservingOriginal()
-                        ->toMediaCollection($mediaCollection['collection']);
-                }
-            }
+        if(isset($this->pages()['create'])){
+            return app($this->pages()['create'])->create();
         }
 
-        Toast::title($this->translations()['single'] . ' Has Been Created Successfully')->success()->autoDismiss(2);
-        return redirect()->route('admin.'.$this->slug.'.index');
+        return back();
     }
 
 
     /**
-     * @param $model
-     * @return View
+     * @param Request $request
+     * @return RedirectResponse
      */
-    public function show($model): View
+    public function store(Request $request): RedirectResponse
     {
-        $model = $this->model::find($model);
-        return view('tomato-ketchup::resource.show',[
-            "model" => $model,
-            "fields" => $this->fields(),
-            "translations" => $this->translations(),
-            "slug" => $this->slug,
-        ]);
+        if($this->pages()['create']){
+            return app($this->pages()['create'])->store($request);
+        }
+
+        return back();
+    }
+
+
+    /**
+     * @param Request $request
+     * @param $model
+     * @return RedirectResponse | View
+     */
+    public function show(Request $request, $model): RedirectResponse | View
+    {
+        if(isset($this->pages()['show'])){
+            return app($this->pages()['show'])->show($request, $model);
+        }
+
+        return back();
     }
 
     /**
      * @param $model
-     * @return View
+     * @return RedirectResponse | View
      */
-    public function edit($model): View
+    public function edit($model): RedirectResponse | View
     {
-        $model = $this->model::find($model);
-        return view('tomato-ketchup::resource.edit',[
-            "model" => $model,
-            "fields" => $this->fields(),
-            "translations" => $this->translations(),
-            "slug" => $this->slug,
-        ]);
+        if(isset($this->pages()['edit'])){
+            return app($this->pages()['edit'])->edit($model);
+        }
+
+        return back();
     }
 
 
-    public function update(Request $request, $model)
+    /**
+     * @param Request $request
+     * @param $model
+     * @return RedirectResponse
+     */
+    public function update(Request $request, $model): RedirectResponse
     {
-        $model = $this->model::find($model);
-
-        $rules = [];
-        $media = [];
-        foreach ($this->fields() as $field) {
-            if($field->type === 'media'){
-                $media[] = [
-                    "collection" => $field->name,
-                    "multi" => $field->multi,
-                ];
-            }
-            $rules[$field->name] = $field->rules;
-        }
-        $request->validate($rules);
-
-        $record = $model->update($request->all());
-
-
-        if(count($media)){
-            foreach ($media as $mediaCollection){
-                $model->clearMediaCollection($mediaCollection['collection']);
-                if($mediaCollection['multi']){
-                    foreach ($request->{$mediaCollection['collection']} as $item) {
-                        if(!is_string($item)){
-                            if($item->getClientOriginalName() === 'blob'){
-                                $model->addMedia($item)
-                                    ->usingFileName(strtolower(Str::random(10).'_'.$mediaCollection['collection'].'.'.$item->extension()))
-                                    ->preservingOriginal()
-                                    ->toMediaCollection($mediaCollection['collection']);
-                            }
-                            else {
-                                $record->addMedia($item)
-                                    ->preservingOriginal()
-                                    ->toMediaCollection($mediaCollection['collection']);
-                            }
-                        }
-                    }
-                }
-                else {
-                    if($request->{$mediaCollection['collection']}->getClientOriginalName() === 'blob'){
-                        $model->addMedia($request->{$mediaCollection['collection']})
-                            ->usingFileName(strtolower(Str::random(10).'_'.$mediaCollection['collection'].'.'.$request->{$mediaCollection['collection']}->extension()))
-                            ->preservingOriginal()
-                            ->toMediaCollection($mediaCollection['collection']);
-                    }
-                    else {
-                        $model->addMedia($request->{$mediaCollection['collection']})
-                            ->preservingOriginal()
-                            ->toMediaCollection($mediaCollection['collection']);
-                    }
-                }
-            }
+        if(isset($this->pages()['edit'])){
+            return app($this->pages()['edit'])->update($request, $model);
         }
 
-        Toast::title($this->translations()['single'] . ' Has Been Updated Successfully')->success()->autoDismiss(2);
-        return redirect()->route('admin.'.$this->slug.'.index');
+        return back();
     }
 
 
-    public  function destroy($model): RedirectResponse
+    /**
+     * @param Request $request
+     * @param $model
+     * @return RedirectResponse
+     */
+    public  function destroy(Request $request, $model): RedirectResponse
     {
+        $id = $model;
+        $request = $this->beforeDestroy($request, $model);
+
         $model = $this->model::find($model);
         $model->delete();
-        Toast::title($this->translations()['single'] . ' Has Been Deleted Successfully')->success()->autoDismiss(2);
-        return redirect()->route('admin.'.$this->slug.'.index');
+
+        $this->afterDestroy($request, $id);
+
+        Toast::title($this->translations()['messages']['destroy'])->success()->autoDismiss(2);
+        return back();
     }
 }

@@ -17,6 +17,6 @@ class Password
 
     public static function make(string $name): static
     {
-        return (new self)->name($name)->type('password');
+        return (new self)->name($name)->type('password')->list()->show();
     }
 }

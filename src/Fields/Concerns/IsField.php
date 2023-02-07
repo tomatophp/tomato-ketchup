@@ -7,6 +7,7 @@ use Spatie\Macroable\Macroable;
 trait IsField
 {
     use Macroable;
+    use HasCan;
 
     public string $name;
 

@@ -3,6 +3,7 @@
 namespace Tomatophp\TomatoKetchup\Fields;
 
 use Spatie\Macroable\Macroable;
+use Tomatophp\TomatoKetchup\Fields\Concerns\HasCan;
 use Tomatophp\TomatoKetchup\Fields\Concerns\HasValidation;
 use Tomatophp\TomatoKetchup\Fields\Concerns\IsField;
 use Tomatophp\TomatoKetchup\Fields\Concerns\IsReactive;
@@ -10,6 +11,7 @@ use Tomatophp\TomatoKetchup\Fields\Concerns\IsReactive;
 class Option
 {
     use Macroable;
+    use HasCan;
 
     public static function make(string $label): static
     {

@@ -10,6 +10,9 @@ use Tomatophp\TomatoKetchup\Resource\ResourceInterface;
 use Tomatophp\TomatoKetchup\Resource\Routes;
 use Tomatophp\TomatoKetchup\Resource\SettersAndGetters;
 
+/**
+ *
+ */
 class Resource implements ResourceInterface
 {
     use Helpers;
@@ -18,11 +21,46 @@ class Resource implements ResourceInterface
     use Methods;
     use Routes;
 
+    /**
+     * @var string|null
+     */
     public string|null $title = "";
+    /**
+     * @var string|null
+     */
     public string|null $single = "";
+    /**
+     * @var string|null
+     */
     public string|null $group = "";
-    public string|null $icon = "bx bx-circle";
+    /**
+     * @var string|null
+     */
+    public string|null $icon = "bx bxs-category";
+    /**
+     * @var string|null
+     */
+    public string|null $views = "tomato-ketchup::resource";
+
+    /**
+     * @var bool
+     */
+    public bool $deletable = true;
+    /**
+     * @var bool
+     */
+    public bool $exportable = true;
+    /**
+     * @var bool
+     */
+    public bool $importable = true;
+    /**
+     * @var string
+     */
     public string $model = "";
+    /**
+     * @var string|null
+     */
     public string|null $slug = "";
 
     /**
@@ -31,22 +69,6 @@ class Resource implements ResourceInterface
     public function fields(): array
     {
         return [];
-    }
-
-    /**
-     * @return Table
-     */
-    public function table(): Table
-    {
-        return new Table();
-    }
-
-    /**
-     * @return Form
-     */
-    public function form(): Form
-    {
-        return new Form();
     }
 
     /**
@@ -76,6 +98,14 @@ class Resource implements ResourceInterface
     /**
      * @return array
      */
+    public function widgets(): array
+    {
+        return [];
+    }
+
+    /**
+     * @return array
+     */
     public function relations(): array
     {
         return [];
@@ -89,6 +119,11 @@ class Resource implements ResourceInterface
         return [
             "index" => $this->title,
             "single" => $this->single,
+            "messages" => [
+                "store" => __('Your '.$this->single.' Created Successfully'),
+                "update" => __('Your '.$this->single.' Updated Successfully'),
+                "destroy" => __('Your '.$this->single.' Deleted Successfully'),
+            ]
         ];
     }
 }

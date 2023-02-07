@@ -4,6 +4,9 @@ namespace Tomatophp\TomatoKetchup\Resource;
 
 use Illuminate\Support\Str;
 
+/**
+ *
+ */
 trait SettersAndGetters
 {
 
