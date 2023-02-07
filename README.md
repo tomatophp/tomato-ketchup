@@ -1,4 +1,6 @@
-# Tomato ketchup
+![Screenshot](https://github.com/tomatophp/tomato-ketchup/blob/master/art/screenshot.png)
+
+# Tomato Ketchup
 
 a resource manager class for tomato php
 
@@ -45,7 +47,7 @@ you can join our discord server to get support [TomatoPHP](https://discord.gg/Xq
 
 ## Docs
 
-you can check docs of this package on [Docs](https://docs.tomatophp.com/plugins/laravel-package-generator)
+you can check docs of this package on [Docs](https://docs.tomatophp.com/plugins/tomato-ketchup)
 
 ## Changelog
 

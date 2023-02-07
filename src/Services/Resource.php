@@ -41,6 +41,10 @@ class Resource implements ResourceInterface
      * @var string|null
      */
     public string|null $views = "tomato-ketchup::resource";
+    /**
+     * @var bool|null
+     */
+    public bool|null $hide = false;
 
     /**
      * @var bool

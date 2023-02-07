@@ -56,10 +56,12 @@ class TomatoCore
     public function menus(string $resource): void
     {
         $resource = app($resource);
-        $this->menus[] = \TomatoPHP\TomatoPHP\Services\Menu\Menu::make()
-            ->label($resource->title)
-            ->icon($resource->icon)
-            ->route('admin.'. $resource->slug. '.index');
+        if(!$resource->hide){
+            $this->menus[] = \TomatoPHP\TomatoPHP\Services\Menu\Menu::make()
+                ->label($resource->title)
+                ->icon($resource->icon)
+                ->route('admin.'. $resource->slug. '.index');
+        }
     }
 
     /**

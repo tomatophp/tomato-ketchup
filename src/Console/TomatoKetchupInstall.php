@@ -21,7 +21,7 @@ class TomatoKetchupInstall extends Command
      *
      * @var string
      */
-    protected $description = 'install package and publish assets';
+    protected $description = 'Install package and publish assets';
 
     public function __construct()
     {
@@ -38,6 +38,7 @@ class TomatoKetchupInstall extends Command
     {
         $this->info('Publish Vendor Assets');
         $this->callSilent('optimize:clear');
+        $this->artisanCommand(['tomato-components:install']);
         $this->yarnCommand(['install']);
         $this->yarnCommand(['build']);
         $this->artisanCommand(["migrate"]);
