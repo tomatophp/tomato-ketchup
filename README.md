@@ -9,37 +9,6 @@ a resource manager class for tomato php
 ```bash
 composer require tomatophp/tomato-ketchup
 ```
-after install your package please run this command
-
-```bash
-php artisan tomato-ketchup:install
-```
-
-## Publish Assets
-
-you can publish config file by use this command
-
-```bash
-php artisan vendor:publish --tag="tomato-ketchup-config"
-```
-
-you can publish views file by use this command
-
-```bash
-php artisan vendor:publish --tag="tomato-ketchup-views"
-```
-
-you can publish languages file by use this command
-
-```bash
-php artisan vendor:publish --tag="tomato-ketchup-lang"
-```
-
-you can publish migrations file by use this command
-
-```bash
-php artisan vendor:publish --tag="tomato-ketchup-migrations"
-```
 
 ## Support
 
